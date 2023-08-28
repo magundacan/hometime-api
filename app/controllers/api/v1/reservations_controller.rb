@@ -12,8 +12,10 @@ class Api::V1::ReservationsController < ApplicationController
   private
 
   def reservation_params
+    @reservation_params ||= Reservation::Payload::Parser.call(params)
   end
 
   def guest_params
+    @guest_params ||= Guest::Payload::Parser.call(params)
   end
 end
