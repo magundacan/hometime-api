@@ -3,9 +3,9 @@ class Api::V1::ReservationsController < ApplicationController
     reservation = Reservation.build_with_guest(reservation_params, guest_params)
 
     if reservation.save_with_guest
-      render json: reservation, status: :ok
+      render json: ReservationSerializer.new(reservation, { include: [:guest] }).serializable_hash, status: :ok
     else
-      render json: { errors: reservation.errors }, status: :unprocessable_entity
+      render json: { errors: reservation.errors.merge!(reservation.guest.errors) }, status: :unprocessable_entity
     end
   end
 
