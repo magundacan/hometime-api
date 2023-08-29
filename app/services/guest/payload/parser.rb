@@ -10,7 +10,8 @@ module Guest::Payload
       {
         email: EmailParser.call(params),
         first_name: FirstNameParser.call(params),
-        last_name: LastNameParser.call(params)
+        last_name: LastNameParser.call(params),
+        contact_numbers: ContactNumbersParser.call(params)
       }.compact
     end
   end
