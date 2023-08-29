@@ -21,7 +21,7 @@ module Reservation::Payload
         payout_price_in_cents: PayoutPriceInCentsParser.call(params),
         security_price_in_cents: SecurityPriceInCentsParser.call(params),
         currency: CurrencyParser.call(params)
-      }
+      }.compact
     end
   end
 end

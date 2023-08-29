@@ -11,7 +11,7 @@ module Guest::Payload
         email: EmailParser.call(params),
         first_name: FirstNameParser.call(params),
         last_name: LastNameParser.call(params)
-      }
+      }.compact
     end
   end
 end
