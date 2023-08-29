@@ -49,3 +49,5 @@ end
 
 
 gem "byebug", "~> 11.1", :groups => [:development, :test]
+
+gem "jsonapi-serializer", "~> 2.2"
