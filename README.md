@@ -1,24 +1,40 @@
-# README
+# Hometime - Ruby on Rails Engineer Skill Assessment
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The main objective of the project is to create 1 API endpoint that is able to parse and save 2 different payloads.
 
-Things you may want to cover:
+## My Solution
 
-* Ruby version
+I considered different approaches in implementing the project, but ultimately decided to perform the parsing on a per-column basis using Service Objects.
 
-* System dependencies
+The main idea is that I have one dedicated parser per column, which contains the possible formats or patterns of the payload for that column. These dedicated parsers are then called by a generic parser to assemble the attributes of the resource.
 
-* Configuration
+Scaling the 1 API endpoint to handle 20+ different types of payload would mean adding the new patterns to each dedicated field parser, requiring no additional files and leaving the rest of the code untouched (indication of a clear Separation of Concerns).
 
-* Database creation
+## Getting Started
 
-* Database initialization
+### Dependencies
 
-* How to run the test suite
+* ruby 3.2.2
+* rails 7.0.7.2
+* postgres 14.9
 
-* Services (job queues, cache servers, search engines, etc.)
+### Setup
 
-* Deployment instructions
+General steps:
+```
+git clone git@github.com:magundacan/hometime-api.git
+bundle install
+rails db:create
+rails db:migrate
+rails s
+```
 
-* ...
+Run the specs:
+```
+bundle exec rspec
+```
+
+The endpoint:
+```
+POST /api/v1/reservations
+```
