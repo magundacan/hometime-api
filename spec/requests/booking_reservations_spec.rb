@@ -34,12 +34,12 @@ RSpec.describe "BookingReservations", type: :request do
       end
 
       it "creates a new reservation under a new guest" do
-        expect { post "/api/v1/reservations", params: valid_params }.to change { Reservation, :count }.by(+1).and \
-                                                                        change { Guest,       :count }.by(+1)
+        expect { post "/api/v1/reservations", params: valid_params }.to change(Reservation, :count).by(+1).and \
+                                                                        change(Guest,       :count).by(+1)
 
         json_response = JSON.parse(response.body).deep_symbolize_keys
         expect(json_response[:data][:attributes][:code]).to eq(valid_params[:reservation][:code])
-        expect(json_response[:include][:attributes][:email]).to eq(valid_params[:reservation][:guest_email])
+        expect(json_response[:included][0][:attributes][:email]).to eq(valid_params[:reservation][:guest_email])
 
         expect(response).to have_http_status :ok
       end
